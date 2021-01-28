@@ -1,0 +1,13 @@
+.Custom-Player-Height{
+    height: 450px;
+}
+
+canvasStyle{
+    border: 1px solid blue;
+    width: 640px;
+    height: 450px;
+    position: absolute;
+    z-index: 20;
+    overflow-y: unset;
+    overflow-x: unset;
+}

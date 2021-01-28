@@ -1,0 +1,71 @@
+.time-line-card{
+    height: 200px;
+    border-radius: 0;
+}
+
+.audio-time-span{
+    height: 13px;
+}
+
+.playlist-time-scale{
+    position: relative;
+    left: 0;
+    right: 0;
+    /* margin-left: 200px; */
+    margin-bottom: 16px;
+}
+
+.playlist-time-scale-data1{
+    position: absolute;
+    left: 0;
+}
+.playlist-time-scale-data2{
+    position: absolute;
+    left: 50px;
+}
+
+.playlist-time-scale-data3{
+    position: absolute;
+    left: 100px;
+}
+.playlist-time-scale-data4{
+    position: absolute;
+    left: 150px;
+}
+.playlist-time-scale-data5{
+    position: absolute;
+    left: 200px;
+}
+.playlist-time-scale-data6{
+    position: absolute;
+    left: 250px;
+}
+.playlist-time-scale-data7{
+    position: absolute;
+    left: 300px;
+}
+.playlist-time-scale-data8{
+    position: absolute;
+    left: 350px;
+}
+
+.playlist-time-scale-data9{
+    position: absolute;
+    left: 400px;
+}
+.playlist-time-scale-data10{
+    position: absolute;
+    left: 450px;
+}
+.playlist-time-scale-data11{
+    position: absolute;
+    left: 500px;
+}
+.playlist-time-scale-data12{
+    position: absolute;
+    left: 550px;
+}
+.playlist-time-scale-data13{
+    position: absolute;
+    left: 600px;
+}
