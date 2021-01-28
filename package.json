@@ -1,0 +1,100 @@
+{
+  "name": "video_redact",
+  "version": "0.1.0",
+  "private": true,
+  "author": "",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^3.2.0",
+    "dotenv": "^6.2.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.13.0",
+    "eslint-plugin-react-hooks": "^1.6.0",
+    "file-loader": "^1.1.11",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.21.0",
+    "stylelint": "^9.10.1",
+    "stylelint-config-standard": "^18.3.0"
+  },
+  "dependencies": {
+    "@bbc/react-transcript-editor": "^1.4.1-alpha.8",
+    "@material-ui/core": "^4.11.2",
+    "@material-ui/icons": "^4.11.2",
+    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/react": "^11.2.2",
+    "@testing-library/user-event": "^12.2.2",
+    "axios": "^0.21.1",
+    "bootstrap": "^4.5.3",
+    "classnames": "^2.2.6",
+    "i18next": "^16.0.0",
+    "i18next-browser-languagedetector": "^3.0.1",
+    "konva": "^7.2.1",
+    "material-table": "^1.69.2",
+    "moment": "^2.29.1",
+    "normalizr": "^3.4.0",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.1",
+    "react-axios": "^2.0.4",
+    "react-bootstrap": "^1.4.3",
+    "react-canvas-video": "0.0.4",
+    "react-contextmenu": "^2.14.0",
+    "react-data-table-component": "^6.11.6",
+    "react-dom": "^17.0.1",
+    "react-dropzone-uploader": "^2.11.0",
+    "react-google-charts": "^3.0.15",
+    "react-hot-loader": "^4.11.1",
+    "react-i18next": "^11.8.4",
+    "react-icons": "^3.7.0",
+    "react-intl": "^5.10.6",
+    "react-konva": "^17.0.0-0",
+    "react-player": "^1.11.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.1",
+    "react-scroll": "^1.7.12",
+    "react-select": "^3.1.1",
+    "reactstrap": "^6.5.0",
+    "semantic-ui-react": "^2.0.1",
+    "shwave": "^1.9.3",
+    "styled-components": "^5.2.1",
+    "styled-spinkit": "^1.1.0",
+    "video-react": "^0.14.1",
+    "web-vitals": "^0.2.4"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

@@ -1,2 +1,1 @@
-# VideoRedactApp
- 
+# VideoRedact
