@@ -21,7 +21,11 @@ class BlurVideo extends Component {
     downloadVideo() {
 
         
-        window.location.href = this.props.redactedVideoData.redacted_url
+        try {
+            window.location.href = this.props.redactedVideoData.redacted_url
+        } catch (error) {
+            console.log(error)
+        }
         // const response = await axios.post('https://videoredactapi.herokuapp.com/downloadRedactedVideo', {
         //     "user_id": "165",
         //     "video_id": "103",
