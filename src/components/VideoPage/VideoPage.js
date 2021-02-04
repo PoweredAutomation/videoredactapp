@@ -84,10 +84,12 @@ class VideoPage extends Component {
     }
 
     getSelectedRows =(data) => {
-        const { redactionType, redactionLevel} = this.state;
-        data['readctiontype'] = redactionType
-        data['level_simple'] = redactionLevel
-        data['level_pixelate'] = redactionLevel
+        // const { redactionType, redactionLevel} = this.state;
+        // console.log(redactionType)
+        // console.log(redactionLevel)
+        data['readctiontype'] = 'simple'
+        data['level_simple'] = '5'
+        data['level_pixelate'] = '5'
         this.setState({
             // videoBlurData: [...this.state.videoBlurData, data],
             videoBlurData: data
@@ -104,17 +106,6 @@ class VideoPage extends Component {
         // videoBlurData['level_pixelate'] = redactionLevel
         console.log(videoBlurData)
         this.setState({loading: true})
-        // this.setState({
-        //     videoBlurData: data,
-            
-        // }, () => {
-        //     // this.setState({loading: true})
-        //     const { videoBlurData } = this.state;
-        //     console.log(videoBlurData)
-        // });
-
-        // facesURLS = []
-
         
 
         const response = await axios.post('https://videoredactapi.herokuapp.com/getEditedVideo', videoBlurData);
@@ -123,6 +114,8 @@ class VideoPage extends Component {
             this.setState({redactedVideo: "video_redcated_url"})
             //console.log(this.state.videoData)
         });
+
+
 
         while (this.redactedVideo === "video_redcated_url"){
             this.getRedactedVideo()
@@ -143,7 +136,6 @@ class VideoPage extends Component {
                 //console.log(this.state.videoData)
             });
         }
-        
     }
 
 
