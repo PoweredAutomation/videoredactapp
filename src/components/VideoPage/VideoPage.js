@@ -124,7 +124,7 @@ class VideoPage extends Component {
             //console.log(this.state.videoData)
         });
 
-        if(this.redactedVideo === "video_redcated_url"){
+        while (this.redactedVideo === "video_redcated_url"){
             this.getRedactedVideo()
         }
 
