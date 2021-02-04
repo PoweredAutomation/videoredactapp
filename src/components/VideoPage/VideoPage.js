@@ -19,7 +19,14 @@ class VideoPage extends Component {
             videoHeadandAudioData: {},
             videoSectionWidth: 0,
             videoData: [],
-            loading: true
+            videoBlurData: [],
+            loading: true,
+            redactionType: "",
+            redactionLevel: "",
+            muteType: "",
+            activeTab: "",
+            redactedVideo: "",
+            redactedVideoData: {}
         }
     }
 
@@ -75,24 +82,72 @@ class VideoPage extends Component {
         
         
     }
-    handleSaveAndClose = async () => {
-        const data = this.child.current.handleSubmit();
-        this.setState({
-            videoAnnotationData: data,
-            
-        }, () => {
-            this.setState({loading: true})
-            const { videoAnnotationData } = this.state;
-            console.log(videoAnnotationData)
-        });
 
-        // const response = await axios.post('http://127.0.0.1:8000/redactfaces', {"data": "Ajinkya Deshmukh"});
-        // this.setState(console.log(response.data), () => {
-        //     this.setState({loading: false})
-        //     //console.log(this.state.videoData)
+    getSelectedRows =(data) => {
+        this.setState({
+            // videoBlurData: [...this.state.videoBlurData, data],
+            videoBlurData: data
+        }, () => {
+            const { videoBlurData } = this.state;
+            // console.log(videoBlurData)
+        });
+    }
+
+
+
+    handleSaveAndClose = async (data) => {
+        // const data = this.child.current.handleSubmit();
+        const { videoBlurData, redactionType, redactionLevel, muteType} = this.state;
+        videoBlurData['readctiontype'] = redactionType
+        videoBlurData['level_simple'] = redactionLevel
+        videoBlurData['level_pixelate'] = redactionLevel
+        console.log(videoBlurData)
+        this.setState({loading: true})
+        // this.setState({
+        //     videoBlurData: data,
+            
+        // }, () => {
+        //     // this.setState({loading: true})
+        //     const { videoBlurData } = this.state;
+        //     console.log(videoBlurData)
         // });
 
+        // facesURLS = []
+
+        
+
+        const response = await axios.post('https://videoredactapi.herokuapp.com/getEditedVideo', videoBlurData);
+        this.setState(console.log(response.data), () => {
+            // redactedVideo: "uploading"
+            this.setState({redactedVideo: "video_redcated_url"})
+            //console.log(this.state.videoData)
+        });
+
+        if(this.redactedVideo === "video_redcated_url"){
+            this.getRedactedVideo()
+        }
+
     }
+
+
+    async getRedactedVideo(){
+        const response = await axios.get(`https://videoredactapi.herokuapp.com/getRedactedVideoData/${this.props.match.params.user_id}?video_id=${this.props.match.params.videoid}`);
+        if(response.status === 200){
+            this.setState(console.log(response.data), () => {
+                this.setState({
+                    loading: false, 
+                    redactedVideo: response.data.redacted_url,
+                    redactedVideoData: response.data
+                })
+                //console.log(this.state.videoData)
+            });
+        }
+        
+    }
+
+
+
+    
 
     handleSave = () => {
         const data = this.child.current.handleSubmit();
@@ -104,11 +159,33 @@ class VideoPage extends Component {
         });
     }
 
+    handleRangeOption = (e) => {
+        console.log(e.target.value);
+        this.setState({
+            redactionLevel: e.target.value
+        })
+    }
+
+    handleMuteOption = (e) => {
+        console.log(e.target.value);
+        this.setState({
+            muteType: e.target.value
+        })
+    }
+
+    handleBulrOption = (e) => {
+        console.log(e.target.value);
+        this.setState({
+            redactionType: e.target.value
+        })
+    }
+
+
     // annotations[0].incidents[0].time
 
     render() {
         // const [MyData] = useState(null);
-        const { videoSectionWidth, videoData, loading, videoAnnotationData, videoHeadandAudioData } = this.state;
+        const { videoSectionWidth, videoData, loading, videoAnnotationData, redactedVideoData } = this.state;
         //console.log(videoData)
         
         
@@ -156,7 +233,7 @@ class VideoPage extends Component {
                                         <div class="tab-pane fade show active" id="video" role="tabpanel" aria-labelledby="video-tab">
                                             <div class="card va-card">
                                                 <div class="card-body card-scroll">
-                                                    <HeadDetect  faceData = {videoData}/>
+                                                    <HeadDetect  faceData = {videoData} getSelectedRows={this.getSelectedRows} UserID = {this.props.match.params.user_id}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -175,7 +252,7 @@ class VideoPage extends Component {
                             </div>
                         </div>
                         <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="files-tab">
-                            <BlurVideo blurVideoData = {videoData} />
+                            <BlurVideo blurVideoData = {videoData} redactedVideoData = {redactedVideoData} />
                         </div>
                     </div>
                 </div>
@@ -200,9 +277,10 @@ class VideoPage extends Component {
                                 Redaction Type
                             </div>
                             <div className="col-md-6 text-left">
-                                <select class="form-select" aria-label="Default select example">
-                                    <option value="1">Blur</option>
-                                    <option value="2">Pixelate</option>
+                                <select onChange={this.handleBulrOption} class="form-select" aria-label="Default select example">
+                                    <option value="0"></option>
+                                    <option value="Blur">Blur</option>
+                                    <option value="Pixelate">Pixelate</option>
                                 </select>
                             </div>
                         </div>
@@ -211,7 +289,8 @@ class VideoPage extends Component {
                                 Redaction Level
                             </div>
                             <div className="col-md-6 text-left">
-                                <select class="form-select" aria-label="Default select example">
+                                <select onChange={this.handleRangeOption} class="form-select" aria-label="Default select example">
+                                    <option value="0"></option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -235,9 +314,10 @@ class VideoPage extends Component {
                                 Redaction Type
                             </div>
                             <div className="col-md-6 text-left">
-                                <select class="form-select" aria-label="Default select example">
-                                    <option value="1">Mute</option>
-                                    <option value="2">Tone</option>
+                                <select onChange={this.handleMuteOption} class="form-select" aria-label="Default select example">
+                                    <option value="0"></option>
+                                    <option value="Mute">Mute</option>
+                                    <option value="Tone">Tone</option>
                                 </select>
                             </div>
                         </div>
