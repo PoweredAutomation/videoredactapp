@@ -87,15 +87,12 @@ class VideoPage extends Component {
         this.setState({
             // videoBlurData: [...this.state.videoBlurData, data],
             videoBlurData: data
-        }, () => {
-            const { videoBlurData } = this.state;
-            // console.log(videoBlurData)
         });
     }
 
 
 
-    handleSaveAndClose = async (data) => {
+    handleSaveAndClose = async () => {
         // const data = this.child.current.handleSubmit();
         const { videoBlurData, redactionType, redactionLevel, muteType} = this.state;
         videoBlurData['readctiontype'] = redactionType
