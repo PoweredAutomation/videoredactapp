@@ -84,6 +84,10 @@ class VideoPage extends Component {
     }
 
     getSelectedRows =(data) => {
+        const { redactionType, redactionLevel} = this.state;
+        data['readctiontype'] = redactionType
+        data['level_simple'] = redactionLevel
+        data['level_pixelate'] = redactionLevel
         this.setState({
             // videoBlurData: [...this.state.videoBlurData, data],
             videoBlurData: data
@@ -94,10 +98,10 @@ class VideoPage extends Component {
 
     handleSaveAndClose = async () => {
         // const data = this.child.current.handleSubmit();
-        const { videoBlurData, redactionType, redactionLevel, muteType} = this.state;
-        videoBlurData['readctiontype'] = redactionType
-        videoBlurData['level_simple'] = redactionLevel
-        videoBlurData['level_pixelate'] = redactionLevel
+        const { videoBlurData} = this.state;
+        // videoBlurData['readctiontype'] = redactionType
+        // videoBlurData['level_simple'] = redactionLevel
+        // videoBlurData['level_pixelate'] = redactionLevel
         console.log(videoBlurData)
         this.setState({loading: true})
         // this.setState({
