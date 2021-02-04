@@ -9,7 +9,8 @@ class BlurVideo extends Component {
         super(props);
         this.state = {
           redacted_url: "",
-          video_name: ""
+          video_name: "",
+          video_upload_dt: ""
         }
       }
 
@@ -17,10 +18,14 @@ class BlurVideo extends Component {
         this.player.playbackRate = 1;
         this.forceUpdate();
         if(Object.keys(this.props.redactedVideoData).length === 0 && this.props.redactedVideoData.constructor === Object) {
-            this.setState({redacted_url: "", video_name: ""})
+            this.setState({redacted_url: "", video_name: "", video_upload_dt: ""})
         }
         else{
-            this.setState({redacted_url: this.props.redactedVideoData.redacted_url, video_name:this.props.redactedVideoData.video_name})
+            this.setState({
+                redacted_url: this.props.redactedVideoData.redacted_url, 
+                video_name:this.props.redactedVideoData.video_name,
+                video_upload_dt: this.props.redactedVideoData.video_upload_dt
+            })
         }
       }
 
@@ -79,7 +84,7 @@ class BlurVideo extends Component {
                 <div className="col-md-4 text-left">
                     <h5>Latest Redacted File</h5>
                     <p className="mb-0">{this.video_name}</p>
-                    <p>{this.props.redactedVideoData.video_upload_dt}</p>
+                    <p>{this.video_upload_dt}</p>
                     <button type="button" className="btn btn-outline-secondary mr-3 rounded-0">DELETE</button>
                     <button onClick={this.downloadVideo} className="btn btn-primary rounded-0" type="submit">DOWNLOAD</button>
                 </div>
