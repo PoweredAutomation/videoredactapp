@@ -8,24 +8,33 @@ class BlurVideo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          // FaceDataList: []
+          redacted_url: ""
         }
       }
 
     componentDidMount() {
         this.player.playbackRate = 1;
         this.forceUpdate();
+        if(Object.keys(this.props.redactedVideoData).length === 0 && this.props.redactedVideoData.constructor === Object) {
+            this.setState({redacted_url: ""})
+        }
+        else{
+            this.setState({redacted_url: this.props.redactedVideoData.redacted_url})
+        }
       }
 
+
+    
     
     downloadVideo() {
-
+        window.location.href = this.redacted_url
+        // if(Object.keys(this.props.redactedVideoData).length === 0 && this.props.redactedVideoData.constructor === Object) {
+        //     window.location.href = redacted_url
+        // }
+        // else{
+        //     window.location.href = this.props.redactedVideoData.redacted_url
+        // }
         
-        try {
-            window.location.href = this.props.redactedVideoData.redacted_url
-        } catch (error) {
-            console.log(error)
-        }
         // const response = await axios.post('https://videoredactapi.herokuapp.com/downloadRedactedVideo', {
         //     "user_id": "165",
         //     "video_id": "103",
@@ -54,7 +63,7 @@ class BlurVideo extends Component {
                             this.player = c;
                         }}
                         poster=""
-                        src={this.props.redactedVideoData.redacted_url}
+                        src={this.redacted_url}
                         class="Custom-Player-Height"
                     >
                         <LoadingSpinner />
