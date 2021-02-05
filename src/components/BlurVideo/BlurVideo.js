@@ -15,18 +15,24 @@ class BlurVideo extends Component {
       }
 
     componentDidMount() {
-        this.player.playbackRate = 1;
-        this.forceUpdate();
+        
         if(Object.keys(this.props.redactedVideoData).length === 0 && this.props.redactedVideoData.constructor === Object) {
             this.setState({redacted_url: "", video_name: "", video_upload_dt: ""})
         }
         else{
+            console.log(this.props.redactedVideoData.redacted_url)
+            console.log(this.props.redactedVideoData.video_name)
+            console.log(this.props.redactedVideoData.video_upload_dt)
+
+
             this.setState({
                 redacted_url: this.props.redactedVideoData.redacted_url, 
                 video_name:this.props.redactedVideoData.video_name,
                 video_upload_dt: this.props.redactedVideoData.video_upload_dt
             })
         }
+        // this.player.playbackRate = 1;
+        // this.forceUpdate();
       }
 
 
@@ -61,6 +67,7 @@ class BlurVideo extends Component {
     }
 
     render() {
+        const{redacted_url, video_name, video_upload_dt} = this.state
         return (
             <div className="row">
                 <div className="col-md-8">
@@ -95,3 +102,5 @@ class BlurVideo extends Component {
 
 
 export default BlurVideo
+
+
