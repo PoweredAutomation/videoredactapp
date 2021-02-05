@@ -76,7 +76,7 @@ class BlurVideo extends Component {
                             this.player = c;
                         }}
                         poster=""
-                        src={this.redacted_url}
+                        src={redacted_url}
                         class="Custom-Player-Height"
                     >
                         <LoadingSpinner />
@@ -90,8 +90,8 @@ class BlurVideo extends Component {
                 </div>
                 <div className="col-md-4 text-left">
                     <h5>Latest Redacted File</h5>
-                    <p className="mb-0">{this.video_name}</p>
-                    <p>{this.video_upload_dt}</p>
+                    <p className="mb-0">{video_name}</p>
+                    <p>{video_upload_dt}</p>
                     <button type="button" className="btn btn-outline-secondary mr-3 rounded-0">DELETE</button>
                     <button onClick={this.downloadVideo} className="btn btn-primary rounded-0" type="submit">DOWNLOAD</button>
                 </div>
