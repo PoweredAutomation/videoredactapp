@@ -109,17 +109,16 @@ class VideoPage extends Component {
         
 
         const response = await axios.post('https://videoredactapi.herokuapp.com/getEditedVideo', videoBlurData);
-        this.setState(console.log(response.data), () => {
-            // redactedVideo: "uploading"
-            this.setState({redactedVideo: "video_redcated_url"})
-            //console.log(this.state.videoData)
+        this.setState({
+
         });
 
 
-
-//         while (this.redactedVideo === "video_redcated_url"){
-//             this.getRedactedVideo()
-//         }
+        // debugger;
+        // if (this.redactedVideo === "video_redcated_url"){
+        //     debugger;
+            
+        // }
         this.getRedactedVideo()
 
     }
@@ -183,8 +182,8 @@ class VideoPage extends Component {
 
     render() {
         // const [MyData] = useState(null);
-        const { videoSectionWidth, videoData, loading, videoAnnotationData, redactedVideoData } = this.state;
-        //console.log(videoData)
+        const { videoSectionWidth, videoData, loading, videoAnnotationData, redactedVideoData, redactedVideo } = this.state;
+        console.log(`All Done data - ${redactedVideoData}`)
         
         
         return (
@@ -250,7 +249,7 @@ class VideoPage extends Component {
                             </div>
                         </div>
                         <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="files-tab">
-                            <BlurVideo blurVideoData = {videoData} redactedVideoData = {redactedVideoData} />
+                            <BlurVideo blurVideoData = {videoData} redactedVideoData = {redactedVideoData} redactedVideoURL={redactedVideo} />
                         </div>
                     </div>
                 </div>
