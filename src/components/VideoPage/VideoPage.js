@@ -117,24 +117,29 @@ class VideoPage extends Component {
 
 
 
-        while (this.redactedVideo === "video_redcated_url"){
-            this.getRedactedVideo()
-        }
+//         while (this.redactedVideo === "video_redcated_url"){
+//             this.getRedactedVideo()
+//         }
+        this.getRedactedVideo()
 
     }
 
 
     async getRedactedVideo(){
-        const response = await axios.get(`https://videoredactapi.herokuapp.com/getRedactedVideoData/${this.props.match.params.user_id}?video_id=${this.props.match.params.videoid}`);
+        const response = await axios.get(`https://videoredactapi.herokuapp.com/getRedactedVideoData/${this.props.match.params.user_id}?video_id=${this.props.match.params.video_id}`);
         if(response.status === 200){
-            this.setState(console.log(response.data), () => {
+            console.log(`Get Redaction URL id - ${response.data.redacted_url}`)
+            if(response.data.redacted_url === "video_redcated_url"){
+                this.getRedactedVideo()
+            }
+            else{
+                console.log(response.data)
                 this.setState({
                     loading: false, 
                     redactedVideo: response.data.redacted_url,
                     redactedVideoData: response.data
                 })
-                //console.log(this.state.videoData)
-            });
+            }
         }
     }
 
