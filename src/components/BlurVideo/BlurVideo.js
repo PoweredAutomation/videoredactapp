@@ -39,7 +39,7 @@ class BlurVideo extends Component {
     
     
     downloadVideo() {
-        window.location.href = this.redacted_url
+        window.location.href = this.state.redacted_url
         // if(Object.keys(this.props.redactedVideoData).length === 0 && this.props.redactedVideoData.constructor === Object) {
         //     window.location.href = redacted_url
         // }
