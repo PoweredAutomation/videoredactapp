@@ -110,7 +110,7 @@ class VideoPage extends Component {
 
         const response = await axios.post('https://videoredactapi.herokuapp.com/getEditedVideo', videoBlurData);
         this.setState({
-
+            redactedVideo: "video_redcated_url"
         });
 
 
