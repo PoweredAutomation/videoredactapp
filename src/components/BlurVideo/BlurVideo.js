@@ -90,5 +90,3 @@ class BlurVideo extends Component {
 
 
 export default BlurVideo
-
-
