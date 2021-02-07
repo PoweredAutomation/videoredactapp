@@ -89,7 +89,7 @@ class VideoPage extends Component {
         // console.log(redactionType)
         // console.log(redactionLevel)
         data['readctiontype'] = 'simple'
-        data['level_simple'] = '5'
+        data['level_simple'] = '1'
         data['level_pixelate'] = '5'
         this.setState({
             // videoBlurData: [...this.state.videoBlurData, data],
