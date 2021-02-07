@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Player, BigPlayButton, LoadingSpinner, ControlBar, ReplayControl, ForwardControl, PlaybackRateMenuButton } from 'video-react';
+import ReactPlayer from 'react-player'
+// import { Player, BigPlayButton, LoadingSpinner, ControlBar, ReplayControl, ForwardControl, PlaybackRateMenuButton } from 'video-react';
 // import '../CanvasVideo/style.css'
-import axios from 'axios'
+// import axios from 'axios'
 
 class BlurVideo extends Component {
 
@@ -40,6 +41,7 @@ class BlurVideo extends Component {
     
     downloadVideo() {
         // const{redacted_url} = this.state
+        console.log(this.props.redactedVideoURL)
         window.location.href = this.props.redactedVideoURL
         // if(Object.keys(this.props.redactedVideoData).length === 0 && this.props.redactedVideoData.constructor === Object) {
         //     window.location.href = redacted_url
@@ -72,29 +74,14 @@ class BlurVideo extends Component {
         return (
             <div className="row">
                 <div className="col-md-8">
-                    <Player 
-                        ref={c => {
-                            this.player = c;
-                        }}
-                        poster=""
-                        src={redacted_url}
-                        class="Custom-Player-Height"
-                    >
-                        <LoadingSpinner />
-                        <BigPlayButton position="center" />
-                        <ControlBar autoHide={false}>
-                            <ReplayControl seconds={10} order={2.1} />
-                            <ForwardControl seconds={10} order={2.2} />
-                            <PlaybackRateMenuButton rates={[5, 2, 1, 0.5, 0.1]} />
-                        </ControlBar>
-                    </Player>
+                    <ReactPlayer url={redacted_url} controls={true} />
                 </div>
                 <div className="col-md-4 text-left">
                     <h5>Latest Redacted File</h5>
                     <p className="mb-0">{video_name}</p>
                     <p>{video_upload_dt}</p>
                     <button type="button" className="btn btn-outline-secondary mr-3 rounded-0">DELETE</button>
-                    <button onClick={this.downloadVideo} className="btn btn-primary rounded-0" type="submit">DOWNLOAD</button>
+                    <a href={redacted_url}><button className="btn btn-primary rounded-0">DOWNLOAD</button></a>
                 </div>
             </div>
         )
