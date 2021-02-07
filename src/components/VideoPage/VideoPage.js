@@ -27,6 +27,7 @@ class VideoPage extends Component {
             activeTab: "",
             redactedVideo: "",
             redactedVideoData: {}
+            
         }
     }
 
@@ -107,19 +108,23 @@ class VideoPage extends Component {
         console.log(videoBlurData)
         this.setState({loading: true})
         
-
-        const response = await axios.post('https://videoredactapi.herokuapp.com/getEditedVideo', videoBlurData);
-        this.setState({
-            redactedVideo: "video_redcated_url"
-        });
-
-
-        // debugger;
-        // if (this.redactedVideo === "video_redcated_url"){
-        //     debugger;
-            
-        // }
-        this.getRedactedVideo()
+        try {
+            const response = await axios.post('https://videoredactapi.herokuapp.com/getEditedVideo', videoBlurData);
+            this.setState({
+                redactedVideo: "video_redcated_url"
+            });
+    
+            this.getRedactedVideo()
+        } catch (error) {
+            console.log(error)
+            this.setState({
+                redactedVideo: "video_redcated_url"
+            });
+    
+            this.getRedactedVideo()
+        }
+        
+        
 
     }
 
@@ -139,6 +144,9 @@ class VideoPage extends Component {
                     redactedVideoData: response.data
                 })
             }
+        }
+        else{
+            this.getRedactedVideo()
         }
     }
 
