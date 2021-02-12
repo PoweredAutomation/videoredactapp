@@ -20,7 +20,7 @@ class HeadDetect extends Component {
       const item = this.props.faceData.faces[i];
   
       let FaceData = {}
-  
+      FaceData['facename'] = item.faceName
       FaceData['object'] = <img src={item.object} alt='img' />
       FaceData['time'] = item.starttime
       FaceData['auto'] = item.auto ? 'Yes' : 'No'
@@ -50,9 +50,12 @@ class HeadDetect extends Component {
       // debugger;
       // console.log(data[0].object)
       const item = data[i];
+      let face_names = String(item.facename).split("/")
+      let face_name = face_names[3]
       this.BlurData.push(
         {
-          "url": item.object.props.src
+          "url": item.object.props.src,
+          "imagename": String(face_name)
         }
       )
 
