@@ -19,7 +19,7 @@ class VideoPage extends Component {
             videoHeadandAudioData: {},
             videoSectionWidth: 0,
             videoData: [],
-            videoBlurData: [],
+            videoBlurData: {},
             loading: true,
             redactionType: "",
             redactionLevel: "",
@@ -88,9 +88,9 @@ class VideoPage extends Component {
         // const { redactionType, redactionLevel} = this.state;
         // console.log(redactionType)
         // console.log(redactionLevel)
-        data['readctiontype'] = 'simple'
-        data['level_simple'] = '1'
-        data['level_pixelate'] = '5'
+        // data['readctiontype'] = 'simple'
+        // data['level_simple'] = '1'
+        // data['level_pixelate'] = '5'
         this.setState({
             // videoBlurData: [...this.state.videoBlurData, data],
             videoBlurData: data
@@ -101,10 +101,11 @@ class VideoPage extends Component {
 
     handleSaveAndClose = async () => {
         // const data = this.child.current.handleSubmit();
-        const { videoBlurData} = this.state;
-        // videoBlurData['readctiontype'] = redactionType
-        // videoBlurData['level_simple'] = redactionLevel
-        // videoBlurData['level_pixelate'] = redactionLevel
+        const { videoBlurData, redactionType, redactionLevel} = this.state;
+        
+        videoBlurData['readctiontype'] = redactionType
+        videoBlurData['level_simple'] = "2"
+        videoBlurData['level_pixelate'] = "2"
         console.log(videoBlurData)
         this.setState({loading: true})
         
@@ -123,9 +124,6 @@ class VideoPage extends Component {
     
             this.getRedactedVideo()
         }
-        
-        
-
     }
 
 
