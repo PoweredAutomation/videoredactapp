@@ -49,9 +49,9 @@ class VideoPage extends Component {
             // debugger;
             window.location.reload()
         }
-        else if(response.data['response'][0]['message'] === "Video uploading"){
-            window.location.reload()
-        }
+//         else if(response.data['response'][0]['message'] === "Video uploading"){
+//             window.location.reload()
+//         }
 
         this.setState({ videoData: response.data }, () => {
             this.setState({loading: false})
