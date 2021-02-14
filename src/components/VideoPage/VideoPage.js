@@ -31,28 +31,9 @@ class VideoPage extends Component {
         }
     }
 
+
     async componentDidMount() {
-        // debugger;
-        
-        // const requestOptions = {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: {"path": "C:/Users/Ajinkya/Desktop/All Data/Recovered data 01-07 07_46_29/GitProject/VideoRedactAPI/test-1_2.mp4"}
-        // };
-        // fetch('http://127.0.0.1:8000/detecthead/', requestOptions)
-        //     .then(data => {
-        //         debugger;
-        //         this.setState({ videoData: data }, () => {
-        //         debugger;
-        //         console.log(this.state.videoData)})});
-
         this.state.loading = true;
-
-        // const response = await axios.post('http://127.0.0.1:8000/getFaceData', {"data": "Ajinkya"});
-        // this.setState({ videoData: response.data }, () => {
-        //     this.setState({loading: false})
-        //     //console.log(this.state.videoData)
-        // });
 
         let userid = this.props.match.params.user_id
         let videoid = this.props.match.params.video_id
@@ -66,6 +47,9 @@ class VideoPage extends Component {
 
         if(response.status !== 200){
             // debugger;
+            window.location.reload()
+        }
+        else if(response.data['response'][0]['message'] === "Video uploading"){
             window.location.reload()
         }
 
@@ -85,14 +69,7 @@ class VideoPage extends Component {
     }
 
     getSelectedRows =(data) => {
-        // const { redactionType, redactionLevel} = this.state;
-        // console.log(redactionType)
-        // console.log(redactionLevel)
-        // data['readctiontype'] = 'simple'
-        // data['level_simple'] = '1'
-        // data['level_pixelate'] = '5'
         this.setState({
-            // videoBlurData: [...this.state.videoBlurData, data],
             videoBlurData: data
         });
     }
