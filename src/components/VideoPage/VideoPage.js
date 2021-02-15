@@ -38,20 +38,20 @@ class VideoPage extends Component {
         let userid = this.props.match.params.user_id
         let videoid = this.props.match.params.video_id
 
-        console.log(`https://videoredactapi.herokuapp.com/getVideoData/${userid}?video_id=${videoid}`)
+        console.log(`http://34.68.93.111/getVideoData/${userid}?video_id=${videoid}`)
 
-        const response = await axios.get(`https://videoredactapi.herokuapp.com/getVideoData/${userid}?video_id=${videoid}`);
+        const response = await axios.get(`http://34.68.93.111/getVideoData/${userid}?video_id=${videoid}`);
 
         console.log(response.status);
         // debugger;
 
-        if(response.status !== 200){
-            // debugger;
-            window.location.reload()
-        }
-//         else if(response.data['response'][0]['message'] === "Video uploading"){
-//             window.location.reload()
-//         }
+        // if(response.status !== 200){
+        //     // debugger;
+        //     window.location.reload()
+        // }
+        // else if(response.data['response'][0]['message'] === "Video uploading"){
+        //     window.location.reload()
+        // }
 
         this.setState({ videoData: response.data }, () => {
             this.setState({loading: false})
@@ -87,43 +87,45 @@ class VideoPage extends Component {
         this.setState({loading: true})
         
         try {
-            const response = await axios.post('https://videoredactapi.herokuapp.com/getEditedVideo', videoBlurData);
+            const response = await axios.post('http://34.68.93.111/getEditedVideo', videoBlurData);
             this.setState({
-                redactedVideo: "video_redcated_url"
-            });
+                loading: false, 
+                redactedVideo: response.data.redacted_url,
+                redactedVideoData: response.data
+            })
     
-            this.getRedactedVideo()
+            // this.getRedactedVideo()
         } catch (error) {
             console.log(error)
-            this.setState({
-                redactedVideo: "video_redcated_url"
-            });
+            // this.setState({
+            //     redactedVideo: "video_redcated_url"
+            // });
     
-            this.getRedactedVideo()
+            // this.getRedactedVideo()
         }
     }
 
 
-    async getRedactedVideo(){
-        const response = await axios.get(`https://videoredactapi.herokuapp.com/getRedactedVideoData/${this.props.match.params.user_id}?video_id=${this.props.match.params.video_id}`);
-        if(response.status === 200){
-            console.log(`Get Redaction URL id - ${response.data.redacted_url}`)
-            if(response.data.redacted_url === "video_redcated_url"){
-                this.getRedactedVideo()
-            }
-            else{
-                console.log(response.data)
-                this.setState({
-                    loading: false, 
-                    redactedVideo: response.data.redacted_url,
-                    redactedVideoData: response.data
-                })
-            }
-        }
-        else{
-            this.getRedactedVideo()
-        }
-    }
+    // async getRedactedVideo(){
+    //     const response = await axios.get(`http://34.68.93.111/getRedactedVideoData/${this.props.match.params.user_id}?video_id=${this.props.match.params.video_id}`);
+    //     if(response.status === 200){
+    //         console.log(`Get Redaction URL id - ${response.data.redacted_url}`)
+    //         if(response.data.redacted_url === "video_redcated_url"){
+    //             this.getRedactedVideo()
+    //         }
+    //         else{
+    //             console.log(response.data)
+    //             this.setState({
+    //                 loading: false, 
+    //                 redactedVideo: response.data.redacted_url,
+    //                 redactedVideoData: response.data
+    //             })
+    //         }
+    //     }
+    //     else{
+    //         this.getRedactedVideo()
+    //     }
+    // }
 
 
 
